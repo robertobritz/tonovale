@@ -27,6 +27,10 @@
         <input type="text" value="{{ auth()->user()->name }}" name="name" placeholder="Nome" class="form-control">
     </div>
     <div class="form-group">
+        <label for="user_name">Nome de Usuário</label>
+        <input type="text" value="{{ auth()->user()->user_name }}" name="user_name" placeholder="Nome de usuário" class="form-control">
+    </div>
+    <div class="form-group">
         <label for="email">E-mail</label>
         <input type="email" value="{{ auth()->user()->email }}" name="email" placeholder="E-mail" class="form-control">
     </div>
