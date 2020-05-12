@@ -46,6 +46,7 @@ class ImageController extends Controller
      */
     public function resizeImagePost(Request $request)
     {
+        
 	      $this->validate($request, [
             'title' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15048',
@@ -53,17 +54,21 @@ class ImageController extends Controller
 
         $image = $request->file('image');
         $titulo  = $request->get('title');
-        $input['imagename'] = $titulo . '.' . $image->getClientOriginalExtension();
+        $input['imagename'] = auth()->user()->user_name . '.' . $image->getClientOriginalExtension();
 
 
         $destinationPath = storage_path('app/public/teste/thumbnail');
+        
         $img = Image::make($image->getRealPath());
 	/*
 	* Redimenciona a imagem e salva o arquivo em .storage/app/public/teste/thumbnail
 	**/
-        $img->resize(800, 600, function ($constraint) {
+       $img->resize(800, 600, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath . '/' . $input['imagename']);
+        })->save(storage_path('app/public/teste/thumbnail'). '/' . $input['imagename']);
+
+
+        dd($upload = Storage::disk('s3')->put($input['imagename'], $img, 'public'));   
 
         $destinationPath = storage_path('app/public/teste/original');
 	//salva o arquivo original para comparar 
