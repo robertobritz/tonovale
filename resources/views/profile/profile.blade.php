@@ -41,7 +41,7 @@
     <div class="form-group">
         <label for="image">Imagem:</label><br>
             @if (auth()->user()->image != null)
-            <img src="{{ url('https://tonovale.s3-sa-east-1.amazonaws.com/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" style="max-width: 300px;">
+            <img src="{{ url('https://tonovale.s3-sa-east-1.amazonaws.com/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" style="max-width: 300px">
             @endif
         <input type="file" name="image" class="form-control">
     </div>

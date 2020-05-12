@@ -19,10 +19,10 @@ class ImageController extends Controller
     public function resizeImage()
     {
         if (!File::isDirectory(storage_path('app/public/teste/thumbnail'))) {
-            Storage::makeDirectory('teste/thumbnail');
+            Storage::makeDirectory('public/teste/thumbnail');
         }
         if (!File::isDirectory(storage_path('app/public/teste/original'))) {
-            Storage::makeDirectory('teste/original');
+            Storage::makeDirectory('public/teste/original');
         }
       
         $files = File::allFiles(storage_path('app/public/teste/thumbnail'));
