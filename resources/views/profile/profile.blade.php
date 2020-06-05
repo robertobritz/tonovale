@@ -21,7 +21,7 @@
  {{--@include('admin.includes.alerts')--}}
 
 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-    {!! csrf_field() !!}
+    {!! csrf_field() !!} 
     <div class="form-group">
         <label for="name">Nome</label>
         <input type="text" value="{{ auth()->user()->name }}" name="name" placeholder="Nome" class="form-control">

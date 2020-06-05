@@ -21,12 +21,12 @@ class UserController extends Controller
         $user = auth()->user();  
         
         $data = $request->all();
-
+       
         if ($data['password'] !=null)
             $data['password'] = bcrypt($data['password']);
         else
             unset($data['password']);
-
+        //dd($data);
         $data['image']= $user->image;
         //dd($data);
 
@@ -48,7 +48,7 @@ class UserController extends Controller
                 $img->resize(800, 600, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(storage_path('app/public/upImage'). '/' . $imageName);
-                
+                //dd("Antes de salvar na nuvem");
                 $upload = Storage::disk('s3')->put('users/'. $imageName , $img, 'public');   
                 
                 Storage::disk('public')->delete('upImage/'.$imageName);

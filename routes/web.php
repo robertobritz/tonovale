@@ -5,11 +5,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Auth::routes();
+
+Route::get('login/google', 'SocialiteController@redirectToProvider');
+Route::get('login/google/callback', 'SocialiteController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 route::post('att-profile', 'User\UserController@profileUpdate')->name('profile.update')->middleware('auth');
